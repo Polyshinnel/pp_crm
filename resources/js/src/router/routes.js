@@ -1,5 +1,6 @@
-import Register from "@/pages/Common/Register.vue";
-import Auth from "@/pages/Common/Auth.vue";
+import Auth from "@/pages/Auth/Auth.vue";
+import Register from "@/pages/Auth/Register.vue";
+import Home from "@/pages/Home.vue";
 
 const routes = [
     {
@@ -12,10 +13,18 @@ const routes = [
     },
     {
         path: '/register',
-        name: 'Register',
+        name: 'Registration',
         component: Register,
         meta: {
             auth: false
+        }
+    },
+    {
+        path: '/',
+        name: 'home',
+        component: Home,
+        meta: {
+            auth: true
         }
     },
 ]

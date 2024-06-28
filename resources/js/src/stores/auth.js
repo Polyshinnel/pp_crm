@@ -39,6 +39,7 @@ export const useAuthStore = defineStore('auth', () => {
         }
     }
 
+
     const logout = () => {
         userInfo.value.token = ''
     }
