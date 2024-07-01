@@ -1,9 +1,25 @@
 <script setup>
 
+import MainComponent from "@/components/common/MainComponent.vue";
+import WorkArea from "@/components/common/WorkArea.vue";
+
+const breadcrumbs = [
+    {
+        name: 'Дашборд',
+        link: '/'
+    }
+]
+
+const pageTitle = 'Дашборд'
+const blockTitle = 'Дашборд'
 </script>
 
 <template>
-    <h1>Home Page</h1>
+    <MainComponent :breadcrumbs="breadcrumbs" :page-title="pageTitle">
+        <WorkArea :block-title="blockTitle">
+
+        </WorkArea>
+    </MainComponent>
 </template>
 
 <style scoped lang="scss">

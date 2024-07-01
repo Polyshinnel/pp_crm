@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('second_name');
-            $table->string('avatar')->nullable();
+            $table->string('avatar')->default('/common/avatar.svg');
             $table->string('email')->unique();
             $table->boolean('verified')->default(false);
             $table->timestamp('email_verified_at')->nullable();
