@@ -36,6 +36,7 @@ class RegisterController extends Controller
                 return response()->json(
                     [
                         'message' => 'user was created',
+                        'err' => 'none'
                     ]
                 );
             } catch (Exception $exception) {

@@ -18,7 +18,7 @@ export const useAuthStore = defineStore('auth', () => {
         try {
             errFlag.value = false
             const dataInfo = {
-                "phone": login,
+                "email": login,
                 "password": pass
             }
             let response = await axios.post(AUTH_URL, dataInfo)

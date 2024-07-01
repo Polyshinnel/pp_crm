@@ -4,18 +4,65 @@ import {ref} from "vue";
 import Divider from 'primevue/divider';
 import Password from 'primevue/password';
 import Button from 'primevue/button';
+import {useAuthStore} from "@/stores/auth.js";
+import {CHECK_USER} from "@/constants/index.js";
+import {useRouter} from "vue-router";
+
+const authStore = useAuthStore();
+const router = useRouter()
 
 const username = ref('');
 const password = ref('');
 const active = ref(false);
+const loading = ref(false)
+
+const activeErr = ref(false)
 
 const changeFunc = () => {
+    activeErr.value = false;
+
     if((username.value.length > 0) && (password.value.length > 0)) {
         active.value = true;
     } else {
         active.value = false;
     }
 }
+
+const checkUser = async (obj) => {
+    let err = '';
+    try {
+        const {data} = await axios.post(CHECK_USER, obj)
+        err = data.err
+    } catch (e) {
+        err = e.response.data.err
+    }
+    return err;
+}
+
+const auth = async () => {
+    let obj = {
+        email: username.value,
+        password: password.value
+    }
+
+    loading.value = true
+
+    const checkDataUser = await checkUser(obj)
+    if(checkDataUser === 'The user is inactive') {
+        await router.push('/unaccept')
+    }
+
+    if(checkDataUser === 'none') {
+        await authStore.auth(username.value, password.value)
+        if(!authStore.errFlag) {
+            await router.push('/')
+        } else {
+            activeErr.value = true
+            loading.value = false
+        }
+    }
+}
+
 </script>
 
 <template>
@@ -42,9 +89,12 @@ const changeFunc = () => {
             </div>
 
             <div class="button-block">
-                <Button label="Войти" class="common-btn form-btn" v-if="!active" disabled />
-                <Button label="Войти" class="common-btn form-btn" v-else />
+                <Button label="Войти" class="common-btn form-btn" v-if="!active && !loading" disabled />
+                <Button label="Войти" class="common-btn form-btn" v-if="active && !loading" @click="auth" />
+                <div class="loading-block" v-if="loading"><i class="pi pi-spin pi-spinner"></i></div>
             </div>
+
+            <p class="auth-err" v-if="activeErr">Доступ закрыт. Введите корректные логин и пароль!</p>
 
             <div class="register-block">
                 <p>Не зарегистрированы? <RouterLink to="/register" class="router-link">Регистрация</RouterLink></p>
@@ -124,6 +174,26 @@ const changeFunc = () => {
 
 .register-block{
     margin-top: 10px;
+    font-size: 14px;
+}
+
+.auth-err{
+    margin-top: 5px;
+    text-align: center;
+    font-size: 12px;
+    color: $cancelColor;
+    font-weight: 300;
+}
+
+.loading-block{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    background: $primaryColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
     font-size: 14px;
 }
 </style>
