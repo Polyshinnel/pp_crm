@@ -5,7 +5,30 @@
 *{
     padding: 0;
     margin: 0;
-    font-family: "Roboto Flex", sans-serif;
+    font-family: "Roboto", sans-serif;
     box-sizing: border-box;
     outline: none;
+}
+
+.common-btn{
+    background: $primaryColor;
+}
+
+.common-btn > .p-button-label{
+    font-weight: 400;
+}
+
+.password-input > .p-inputtext{
+    width: 100%;
+}
+.password-input > .p-input-icon{
+    top: 33%;
+}
+
+.router-link{
+    color: $primaryColor;
+}
+
+.common-input{
+
 }

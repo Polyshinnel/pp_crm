@@ -15,13 +15,11 @@ router.beforeEach((to, from, next) => {
 
     if(to.meta.auth && !authStore.userInfo.token) {
         next('/auth')
-    }
-
-    if(!to.meta.auth && authStore.userInfo.token) {
+    } else if(!to.meta.auth && authStore.userInfo.token) {
         next('/')
+    } else {
+        next();
     }
-
-    next();
 })
 
 
