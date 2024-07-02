@@ -24,6 +24,7 @@ const props = defineProps({
                 :name="item.name"
                 :icon="item.icon"
                 :link="item.link"
+                :active="item.active"
             />
         </div>
     </div>

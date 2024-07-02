@@ -1,6 +1,28 @@
 <script setup>
 import {SIDEBAR} from "@/constants/index.js";
 import SidebarBlock from "@/components/common/Sidebar/SidebarBlock.vue";
+import {useRoute} from "vue-router";
+
+const route = useRoute()
+
+const routeArr = route.path.split('/')
+const currLink = `/${routeArr[1]}`
+
+let sidebarMod = [];
+
+SIDEBAR.forEach((sidebar_item) => {
+    let sidebarItems = [];
+    sidebar_item.item.forEach((routeItem) => {
+        routeItem.active = routeItem.link === currLink;
+        sidebarItems.push(routeItem)
+    })
+    let sidebarObj = {
+        key: sidebar_item.key,
+        title: sidebar_item.title,
+        item: sidebarItems
+    }
+    sidebarMod.push(sidebarObj)
+})
 
 </script>
 
@@ -9,7 +31,7 @@ import SidebarBlock from "@/components/common/Sidebar/SidebarBlock.vue";
         <img src="@/assets/img/logo.png" alt="">
 
         <SidebarBlock
-            v-for="sidebarItem in SIDEBAR"
+            v-for="sidebarItem in sidebarMod"
             :key="sidebarItem.key"
             :title="sidebarItem.title"
             :items="sidebarItem.item"

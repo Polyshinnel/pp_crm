@@ -5,3 +5,5 @@ export const CHECK_USER = '/api/auth/check-user';
 
 
 export const GET_USER = '/api/users/me';
+
+export const GET_BRANDS = '/api/brands'

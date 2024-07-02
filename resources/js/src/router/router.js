@@ -11,8 +11,6 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     const authStore = useAuthStore()
-    console.log(authStore.userInfo)
-
     if(to.meta.auth && !authStore.userInfo.token) {
         next('/auth')
     } else if(!to.meta.auth && authStore.userInfo.token) {

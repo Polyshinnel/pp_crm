@@ -1,14 +1,20 @@
 <script setup>
-defineProps({
+const props = defineProps({
     icon: String,
     name: String,
-    link: String
+    link: String,
+    active: Boolean
 })
+
+let itemClass = 'sidebar-item';
+if(props.active) {
+    itemClass = 'sidebar-item sidebar-item_active'
+}
 </script>
 
 <template>
     <router-link :to="link" class="sidebar-link">
-        <div class="sidebar-item">
+        <div :class="itemClass">
             <div class="img-box">
                 <img :src="icon" alt="">
             </div>
@@ -52,5 +58,9 @@ defineProps({
     &:hover{
         background: $activeColor;
     }
+}
+
+.sidebar-item_active{
+    background: $activeColor;
 }
 </style>
