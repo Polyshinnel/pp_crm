@@ -24,6 +24,7 @@ axiosApiInstance.interceptors.response.use((response) => {
         authStore.logout()
         localStorage.clear()
     }
+    return Promise.reject(error);
 })
 
 export default axiosApiInstance

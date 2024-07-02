@@ -7,7 +7,7 @@ defineProps({
 <template>
     <div class="empty-container">
         <div class="empty-container__block">
-            <img src="@/assets/img/empty.svg" alt="">
+            <img src="../../../assets/img/empty.svg" alt="">
             <p>{{emptyText}}</p>
         </div>
     </div>

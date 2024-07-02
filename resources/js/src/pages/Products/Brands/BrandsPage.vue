@@ -5,12 +5,12 @@ import WorkArea from "@/components/common/WorkArea.vue";
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import axiosApiInstance from "../../../../api.js";
-import {GET_BRANDS} from "@/constants/index.js";
+import {BRANDS} from "@/constants/index.js";
 import {ref} from "vue";
-import Loading from "@/components/common/Loading.vue";
-import FilterComponent from "@/components/common/FilterComponent.vue";
+import Loading from "@/components/common/Misc/Loading.vue";
+import FilterComponent from "@/components/common/Misc/FilterComponent.vue";
 import Tag from 'primevue/tag';
-import EmptyContainer from "@/components/common/EmptyContainer.vue";
+import EmptyContainer from "@/components/common/Misc/EmptyContainer.vue";
 
 const breadcrumbs = [
     {
@@ -26,7 +26,7 @@ const brands = ref(null);
 const loading = ref(true);
 
 const getBrands = async () => {
-    let {data} = await axiosApiInstance.get(GET_BRANDS);
+    let {data} = await axiosApiInstance.get(BRANDS);
     console.log(data.data)
     if(data.data.length > 0) {
         brands.value = data.data

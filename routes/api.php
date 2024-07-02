@@ -41,7 +41,7 @@ Route::group([
     Route::post('check-user', CheckUser::class);
 });
 
-Route::post('/common/uploads', UploadController::class);
+Route::post('/common/upload-image', UploadController::class);
 
 Route::group(
     [

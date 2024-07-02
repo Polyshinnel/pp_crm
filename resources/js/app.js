@@ -8,6 +8,7 @@ import 'primevue/resources/themes/aura-light-green/theme.css'
 import '@/assets/css/style.scss'
 import Vue3TouchEvents from "vue3-touch-events";
 import ConfirmationService from 'primevue/confirmationservice';
+import ToastService from 'primevue/toastservice';
 
 
 createApp(App)
@@ -16,4 +17,5 @@ createApp(App)
     .use(router)
     .use(Vue3TouchEvents)
     .use(ConfirmationService)
+    .use(ToastService)
     .mount('#app')
