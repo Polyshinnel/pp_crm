@@ -57,6 +57,7 @@ Route::group(
         'prefix' => 'brands'
     ], function () {
     Route::get('', IndexController::class);
+    Route::get('/{brand}', \App\Http\Controllers\Brand\ShowController::class);
     Route::post('', StoreController::class);
     Route::patch('/{brand}', UpdateController::class);
     Route::delete('/{brand}', DestroyController::class);

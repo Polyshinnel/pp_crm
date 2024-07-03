@@ -2,8 +2,6 @@
 
 import MainComponent from "@/components/common/MainComponent.vue";
 import WorkArea from "@/components/common/WorkArea.vue";
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
 import axiosApiInstance from "../../../../api.js";
 import {BRANDS} from "@/constants/index.js";
 import {ref} from "vue";
@@ -11,6 +9,7 @@ import Loading from "@/components/common/Misc/Loading.vue";
 import FilterComponent from "@/components/common/Misc/FilterComponent.vue";
 import Tag from 'primevue/tag';
 import EmptyContainer from "@/components/common/Misc/EmptyContainer.vue";
+import Menu from 'primevue/menu';
 
 const breadcrumbs = [
     {
@@ -34,6 +33,27 @@ const getBrands = async () => {
     loading.value = false
 }
 
+const menu = ref();
+const items = ref([
+    {
+        label: 'Options',
+        items: [
+            {
+                label: 'Refresh',
+                icon: 'pi pi-refresh'
+            },
+            {
+                label: 'Export',
+                icon: 'pi pi-upload'
+            }
+        ]
+    }
+]);
+const toggle = (event) => {
+    menu.value.toggle(event);
+    console.log(menu.value);
+};
+
 getBrands();
 </script>
 
@@ -43,38 +63,67 @@ getBrands();
             <FilterComponent btn-link="/brands/create" />
             <div class="brand-block">
                 <Loading v-if="loading" />
+                <div class="table-block" v-if="brands">
+                    <div class="table-header">
+                        <div class="table-header__item table-row__item_name">
+                            <p>Название</p>
+                        </div>
+                        <div class="table-header__item table-row__item_img">
+                            <p>Изображение</p>
+                        </div>
+                        <div class="table-header__item table-row__item_count">
+                            <p>Товаров всего</p>
+                        </div>
+                        <div class="table-header__item table-row__item_count">
+                            <p>На складе</p>
+                        </div>
+                        <div class="table-header__item table-row__item_tag">
+                            <p>Статус</p>
+                        </div>
+                    </div>
+                    <div class="table-row"
+                         v-for="brand in brands"
+                         :key="brand.id"
+                    >
+                        <div class="table-row__item table-row__item_name">
+                            <p>{{brand.name}}</p>
+                        </div>
 
-                <DataTable :value="brands" tableStyle="min-width: 50rem" v-if="brands">
-                    <Column header="Название">
-                        <template #body="slotProps">
-                            {{slotProps.data.name}}
-                        </template>
-                    </Column>
-                    <Column header="Изображение">
-                        <template #body="slotProps">
-                            <div class="img-block">
-                                <img :src="slotProps.data.img" :alt="slotProps.data.name" />
+                        <div class="table-row__item table-row__item_img">
+                            <div class="img-container">
+                                <img :src="brand.img" alt="">
                             </div>
-                        </template>
-                    </Column>
-                    <Column header="Всего товаров">
-                        <template #body="slotProps">
-                            <p>0</p>
-                        </template>
-                    </Column>
-                    <Column header="На складе">
-                        <template #body="slotProps">
-                            <p>0</p>
-                        </template>
-                    </Column>
-                    <Column header="Статус">
-                        <template #body="slotProps">
-                            <Tag severity="success" value="Активен" v-if="slotProps.data.active"></Tag>
-                            <Tag severity="danger" value="Не активен" v-else></Tag>
-                        </template>
-                    </Column>
-                </DataTable>
+                        </div>
 
+                        <div class="table-row__item table-row__item_count">
+                            <p>0</p>
+                        </div>
+
+                        <div class="table-row__item table-row__item_count">
+                            <p>0</p>
+                        </div>
+
+                        <div class="table-row__item table-row__item_tag">
+                            <Tag icon="pi pi-check" severity="success" value="Активен" v-if="brand.active"></Tag>
+                            <Tag icon="pi pi-times" severity="danger" value="Не активен" v-else></Tag>
+                        </div>
+
+                        <div class="table-row__item table-row__item-menu">
+                            <div class="table-row__item-menu-btn" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu">
+                                <i class="pi pi-ellipsis-h"></i>
+                            </div>
+                        </div>
+
+                        <Menu ref="menu" id="overlay_menu" :model="items" :popup="true">
+                            <template>
+                                <div class="menu-btn"><span>Редактировать</span></div>
+                            </template>
+                            <template>
+                                <div class="menu-btn"><span>Удалить</span></div>
+                            </template>
+                        </Menu>
+                    </div>
+                </div>
                 <EmptyContainer empty-text="К сожалению ничего нет" v-else/>
             </div>
         </WorkArea>

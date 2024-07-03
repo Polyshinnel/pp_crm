@@ -9,7 +9,9 @@ defineProps({
     <div class="workarea-block">
         <h2 class="block-title">{{blockTitle}}</h2>
         <ScrollPanel class="scroll-panel">
-            <slot></slot>
+            <div class="scroll-panel__block">
+                <slot></slot>
+            </div>
         </ScrollPanel>
     </div>
 </template>
@@ -34,5 +36,9 @@ defineProps({
 .scroll-panel{
     width: 100%;
     height: 100%;
+}
+
+.scroll-panel__block{
+    padding-bottom: 40px;
 }
 </style>

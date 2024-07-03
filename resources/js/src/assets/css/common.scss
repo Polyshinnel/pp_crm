@@ -34,3 +34,94 @@
 .p-toast-message-text{
     margin-left: 10px;
 }
+
+//Таблица
+.table-block{
+    .table-header{
+        display: flex;
+        padding-bottom: 15px;
+        border-bottom: 1px solid $borderColor;
+
+        p{
+            font-weight: 500;
+            color: $fontColor;
+        }
+    }
+
+    .table-row{
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid $borderColor;
+
+        .img-container{
+            width: 60px;
+            height: 60px;
+            overflow: hidden;
+            border-radius: 5px;
+
+            img{
+                width: 100%;
+                height: 100px;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .table-row__item_name{
+        width: 200px;
+    }
+
+    .table-row__item_img{
+        width: 110px;
+        margin-left: 15px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .table-row__item_count{
+        width: 110px;
+        margin-left: 15px;
+
+        p{
+            text-align: center;
+        }
+    }
+
+    .table-row__item_tag{
+        margin-left: 15px;
+        width: 90px;
+        display: flex;
+        align-items: center;
+    }
+
+    .table-row__item-menu{
+        width: 70px;
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .table-row__item-menu-btn{
+            width: 40px;
+            height: 40px;
+            border: 1px solid $borderColor;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: #fff;
+            transition: 0.3s all ease;
+
+            &:hover{
+                background: #f4f4f4;
+            }
+        }
+    }
+}
+
+//Tag
+.p-tag{
+    padding: 2px 5px;
+}

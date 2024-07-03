@@ -2,53 +2,81 @@
 
 import MainComponent from "@/components/common/MainComponent.vue";
 import WorkArea from "@/components/common/WorkArea.vue";
+import {useRoute, useRouter} from "vue-router";
 import axiosApiInstance from "../../../../api.js";
+import {BRANDS} from "@/constants/index.js";
 import {ref} from "vue";
-import InputBlock from "@/components/common/Inputs/InputBlock.vue";
+import Loading from "@/components/common/Misc/Loading.vue";
 import CustomSelect from "@/components/common/Inputs/CustomSelect.vue";
-import SingleUploadImage from "@/components/common/UploadImage/SingleUploadImage.vue";
-import Button from 'primevue/button';
-import Toast from 'primevue/toast';
-import { useToast } from 'primevue/usetoast';
-import {useRouter} from "vue-router";
 import LoadingBtn from "@/components/common/Misc/LoadingBtn.vue";
-import {BRANDS, CHECK_USER} from "@/constants/index.js";
+import Toast from "primevue/toast";
+import InputBlock from "@/components/common/Inputs/InputBlock.vue";
+import Button from "primevue/button";
+import SingleUploadImage from "@/components/common/UploadImage/SingleUploadImage.vue";
+import {useToast} from "primevue/usetoast";
 
-const breadcrumbs = [
-    {
-        name: 'Бренды',
-        link: '/brands'
-    },
-    {
-        name: 'Создание бренда',
-        link: '/brands/create'
-    }
-]
+const route = useRoute()
+const router = useRouter()
+const brandId = route.params.brandId
+
+const loadingData = ref(true)
+const loading = ref(false)
 
 const toast = useToast();
-const router = useRouter();
 
-const pageTitle = 'Бренды'
-const blockTitle = 'Создание бренда'
-
-const brandName = ref('')
+const img = ref('')
+const active = ref(true)
 const status = ref(true)
-const img = ref('');
+const brandName = ref('')
 
-const active = ref(false)
-const loading = ref(false)
+const getBrandData = async () => {
+    const link = `${BRANDS}/${brandId}`
+    try{
+        const {data} = await axiosApiInstance.get(link)
+        brandName.value = data.name
+        img.value = data.img
+        if(data.active == 0) {
+            status.value = false
+        }
+
+
+        const breadcrumbObj = {
+            name: data.name,
+            link: `/brands/${brandId}`
+        }
+        breadcrumbs.value.push(breadcrumbObj)
+
+        loadingData.value = false
+        console.log(status.value)
+    } catch (e) {
+        console.log(e)
+        loadingData.value = false
+    }
+}
+
+const activateBtn = () => {
+    active.value = brandName.value.length > 0
+}
 
 const statusList = ref([
     {label: "Активен", value: true},
     {label: "Не активен", value: false},
 ])
 
+const breadcrumbs = ref([
+    {
+        name: 'Бренды',
+        link: '/brands'
+    }
+])
+
+const pageTitle = 'Бренды'
+const blockTitle = 'Редактирование бренда'
+
+
+
 const getImage = (imgPath) => {
     img.value = imgPath
-}
-
-const activateBtn = () => {
-    active.value = brandName.value.length > 0;
 }
 
 const saveChanges = async () => {
@@ -61,7 +89,8 @@ const saveChanges = async () => {
     loading.value = true
 
     try {
-        const data = await axiosApiInstance.post(BRANDS, obj)
+        const link = `${BRANDS}/${brandId}`
+        const data = await axiosApiInstance.patch(link, obj)
         loading.value = false
         toast.add({ severity: 'success', summary: 'Сохранено', detail: 'Бренд успешно сохранен', life: 3000 });
         setTimeout(() => {
@@ -70,23 +99,21 @@ const saveChanges = async () => {
     } catch (e) {
         loading.value = false
         const error = e.response.data.err
-        if(error === "This brand already exists") {
-            toast.add({ severity: 'error', summary: 'Ошибка', detail: 'Такой бренд уже существует!', life: 3000 });
-        } else {
-            toast.add({ severity: 'error', summary: 'Ошибка', detail: 'Произошла внутренняя ошибка сервера', life: 3000 });
-        }
-
+        toast.add({severity: 'error', summary: 'Ошибка', detail: 'Произошла внутренняя ошибка сервера', life: 3000});
     }
 }
+
+getBrandData()
 </script>
 
 <template>
     <MainComponent :breadcrumbs="breadcrumbs" :page-title="pageTitle">
         <WorkArea :block-title="blockTitle">
             <Toast/>
-            <div class="create-brand-wrapper">
+            <Loading v-if="loadingData" />
+            <div class="create-brand-wrapper" v-else>
                 <div class="create-brand__block">
-                    <SingleUploadImage @image-set="getImage"/>
+                    <SingleUploadImage @image-set="getImage" :image="img"/>
                     <div class="inputs">
                         <InputBlock label="Название" v-model="brandName" id="brand_name" @change="activateBtn"/>
                         <CustomSelect label="Состояние" v-model="status" class="input-select" :option-list="statusList" id="state" />
@@ -94,8 +121,8 @@ const saveChanges = async () => {
                 </div>
 
                 <div class="button-block">
-                    <Button label="Сохранить" class="common-btn save-btn" @click="saveChanges" v-if="active && !loading" />
-                    <Button label="Сохранить" class="common-btn save-btn" v-if="!loading && !active" disabled />
+                    <Button label="Обновить" class="common-btn save-btn" @click="saveChanges" v-if="active && !loading" />
+                    <Button label="Обновить" class="common-btn save-btn" v-if="!loading && !active" disabled />
                     <LoadingBtn class="loading-btn save-btn" v-if="loading"/>
                 </div>
 
@@ -132,5 +159,4 @@ const saveChanges = async () => {
 .input-select{
     margin-top: 5px;
 }
-
 </style>

@@ -28,6 +28,8 @@ const onUpload = async (event) => {
     let path = data.path
     emit('image-set', path)
 }
+
+console.log(userImage.value)
 </script>
 
 <template>

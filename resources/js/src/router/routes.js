@@ -18,6 +18,7 @@ import ParametersPage from "@/pages/Products/Parameters/ParametersPage.vue";
 import SettingsPage from "@/pages/Common/Settings/SettingsPage.vue";
 import BrandsPage from "@/pages/Products/Brands/BrandsPage.vue";
 import BrandsCreatePage from "@/pages/Products/Brands/BrandsCreatePage.vue";
+import BrandsPageEdit from "@/pages/Products/Brands/BrandsPageEdit.vue";
 
 const routes = [
     {
@@ -153,6 +154,14 @@ const routes = [
         path: '/brands/create',
         name: 'brands-create',
         component: BrandsCreatePage,
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/brands/:brandId',
+        name: 'brands-edit',
+        component: BrandsPageEdit,
         meta: {
             auth: true
         }
