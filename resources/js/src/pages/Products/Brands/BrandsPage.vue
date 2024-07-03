@@ -7,9 +7,10 @@ import {BRANDS} from "@/constants/index.js";
 import {ref} from "vue";
 import Loading from "@/components/common/Misc/Loading.vue";
 import FilterComponent from "@/components/common/Misc/FilterComponent.vue";
-import Tag from 'primevue/tag';
 import EmptyContainer from "@/components/common/Misc/EmptyContainer.vue";
-import Menu from 'primevue/menu';
+import {useRouter} from "vue-router";
+
+const router = useRouter()
 
 const breadcrumbs = [
     {
@@ -33,26 +34,16 @@ const getBrands = async () => {
     loading.value = false
 }
 
-const menu = ref();
-const items = ref([
-    {
-        label: 'Options',
-        items: [
-            {
-                label: 'Refresh',
-                icon: 'pi pi-refresh'
-            },
-            {
-                label: 'Export',
-                icon: 'pi pi-upload'
-            }
-        ]
-    }
-]);
-const toggle = (event) => {
-    menu.value.toggle(event);
-    console.log(menu.value);
-};
+const handleEdit = (id) => {
+    const link = `/brands/${id}`
+    router.push(link)
+}
+
+const confirmEvent = async (id) => {
+    const deleteLink = `${BRANDS}/${id}`
+    await axiosApiInstance.delete(deleteLink)
+    await getBrands()
+}
 
 getBrands();
 </script>
@@ -63,68 +54,60 @@ getBrands();
             <FilterComponent btn-link="/brands/create" />
             <div class="brand-block">
                 <Loading v-if="loading" />
-                <div class="table-block" v-if="brands">
-                    <div class="table-header">
-                        <div class="table-header__item table-row__item_name">
-                            <p>Название</p>
-                        </div>
-                        <div class="table-header__item table-row__item_img">
-                            <p>Изображение</p>
-                        </div>
-                        <div class="table-header__item table-row__item_count">
-                            <p>Товаров всего</p>
-                        </div>
-                        <div class="table-header__item table-row__item_count">
-                            <p>На складе</p>
-                        </div>
-                        <div class="table-header__item table-row__item_tag">
-                            <p>Статус</p>
-                        </div>
-                    </div>
-                    <div class="table-row"
-                         v-for="brand in brands"
-                         :key="brand.id"
-                    >
-                        <div class="table-row__item table-row__item_name">
-                            <p>{{brand.name}}</p>
-                        </div>
-
-                        <div class="table-row__item table-row__item_img">
-                            <div class="img-container">
-                                <img :src="brand.img" alt="">
-                            </div>
-                        </div>
-
-                        <div class="table-row__item table-row__item_count">
-                            <p>0</p>
-                        </div>
-
-                        <div class="table-row__item table-row__item_count">
-                            <p>0</p>
-                        </div>
-
-                        <div class="table-row__item table-row__item_tag">
-                            <Tag icon="pi pi-check" severity="success" value="Активен" v-if="brand.active"></Tag>
-                            <Tag icon="pi pi-times" severity="danger" value="Не активен" v-else></Tag>
-                        </div>
-
-                        <div class="table-row__item table-row__item-menu">
-                            <div class="table-row__item-menu-btn" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu">
-                                <i class="pi pi-ellipsis-h"></i>
-                            </div>
-                        </div>
-
-                        <Menu ref="menu" id="overlay_menu" :model="items" :popup="true">
-                            <template>
-                                <div class="menu-btn"><span>Редактировать</span></div>
+                <div class="brand-list" v-if="brands">
+                    <el-table :data="brands" style="width: 100%">
+                        <el-table-column label="" width="140">
+                            <template #default="scope">
+                                <div class="img-block">
+                                    <router-link :to="'/brands/'+scope.row.id"><img :src="scope.row.img" alt=""></router-link>
+                                </div>
                             </template>
-                            <template>
-                                <div class="menu-btn"><span>Удалить</span></div>
+                        </el-table-column>
+                        <el-table-column label="Название" width="240">
+                            <template #default="scope">
+                                <p>{{scope.row.name}}</p>
                             </template>
-                        </Menu>
-                    </div>
+                        </el-table-column>
+                        <el-table-column label="На складе">
+                            <p>0</p>
+                        </el-table-column>
+                        <el-table-column label="Всего">
+                            <p>0</p>
+                        </el-table-column>
+                        <el-table-column label="Состояние">
+                            <template #default="scope">
+                                <el-tag type="success" v-if="scope.row.active">Активен</el-tag>
+                                <el-tag type="danger" v-else>Не активен</el-tag>
+                            </template>
+
+                        </el-table-column>
+                        <el-table-column label="Действия" width="190">
+                            <template #default="scope">
+                                <el-button size="small" @click="handleEdit(scope.row.id)">
+                                    Ред.
+                                </el-button>
+
+                                <el-popconfirm
+                                    title="Уверены что хотите удалить?"
+                                    @confirm="confirmEvent(scope.row.id)"
+                                    confirm-button-text="Да"
+                                    cancel-button-text="Нет"
+                                    width="220"
+                                >им
+                                    <template #reference>
+                                        <el-button
+                                            size="small"
+                                            type="danger"
+                                        >
+                                            Удал.
+                                        </el-button>
+                                    </template>
+                                </el-popconfirm>
+                            </template>
+                        </el-table-column>
+                    </el-table>
                 </div>
-                <EmptyContainer empty-text="К сожалению ничего нет" v-else/>
+                <EmptyContainer empty-text="К сожалению ничего нет" v-if="!brands && !loading"/>
             </div>
         </WorkArea>
     </MainComponent>

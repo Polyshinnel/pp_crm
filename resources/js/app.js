@@ -9,10 +9,13 @@ import '@/assets/css/style.scss'
 import Vue3TouchEvents from "vue3-touch-events";
 import ConfirmationService from 'primevue/confirmationservice';
 import ToastService from 'primevue/toastservice';
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 
 
 createApp(App)
     .use(PrimeVue)
+    .use(ElementPlus)
     .use(createPinia())
     .use(router)
     .use(Vue3TouchEvents)
