@@ -11,7 +11,7 @@ const breadcrumbs = [
 ]
 
 const pageTitle = 'Характеристики'
-const blockTitle = 'Характеристики'
+const blockTitle = 'Список характеристик'
 </script>
 
 <template>

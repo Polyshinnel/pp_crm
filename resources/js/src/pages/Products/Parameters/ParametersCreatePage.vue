@@ -7,11 +7,15 @@ const breadcrumbs = [
     {
         name: 'Физ.параметры',
         link: '/parameters'
+    },
+    {
+        name: 'Создание параметра',
+        link: '/parameters'
     }
 ]
 
 const pageTitle = 'Физ.параметры'
-const blockTitle = 'Список параметров'
+const blockTitle = 'Создать параметр'
 </script>
 
 <template>

@@ -5,13 +5,17 @@ import WorkArea from "@/components/common/WorkArea.vue";
 
 const breadcrumbs = [
     {
-        name: 'Физ.параметры',
-        link: '/parameters'
+        name: 'Характеристики',
+        link: '/characteristics'
+    },
+    {
+        name: 'Создание характеристики',
+        link: '/characteristics'
     }
 ]
 
-const pageTitle = 'Физ.параметры'
-const blockTitle = 'Список параметров'
+const pageTitle = 'Характеристики'
+const blockTitle = 'Создание характеристики'
 </script>
 
 <template>

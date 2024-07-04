@@ -645,6 +645,516 @@
                 ]
             }
         },
+        "/api/chars/{char}": {
+            "get": {
+                "tags": [
+                    "Chars"
+                ],
+                "summary": "Единичная запись",
+                "operationId": "188f7c950e5b256fe590e71564b7c076",
+                "parameters": [
+                    {
+                        "name": "char",
+                        "in": "path",
+                        "description": "Id характеристики",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Получить характеристику",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Color"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Chars"
+                ],
+                "summary": "Удаление записи",
+                "operationId": "4887c8e0b5cec579400c15835ae5b689",
+                "parameters": [
+                    {
+                        "name": "char",
+                        "in": "path",
+                        "description": "Id характеристики",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Характеристика удалена",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Char was deleted"
+                                        },
+                                        "err": {
+                                            "type": "string",
+                                            "example": "none"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Chars"
+                ],
+                "summary": "Обновление характеристики",
+                "operationId": "35162d7ab1b79030f9ec47f9e9d8658f",
+                "parameters": [
+                    {
+                        "name": "char",
+                        "in": "path",
+                        "description": "Id характеристики",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Color"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Характеристика обновлена",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Char was updated"
+                                        },
+                                        "err": {
+                                            "type": "string",
+                                            "example": "none"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/chars": {
+            "get": {
+                "tags": [
+                    "Chars"
+                ],
+                "summary": "Список характеристик",
+                "operationId": "8a371b2886d5fa8bfc7241d59132f319",
+                "responses": {
+                    "200": {
+                        "description": "Получить список характеристик",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Color"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Chars"
+                ],
+                "summary": "Создание характеристики",
+                "operationId": "6e2d4b0a9e9f4f1ecf2ea74de7355a29",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Color"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Характеристика создана",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Char was created"
+                                        },
+                                        "err": {
+                                            "type": "string",
+                                            "example": "none"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/params/{param}": {
+            "get": {
+                "tags": [
+                    "Params"
+                ],
+                "summary": "Единичная запись",
+                "operationId": "f7f12f0cf906993f6322f9b80a846592",
+                "parameters": [
+                    {
+                        "name": "param",
+                        "in": "path",
+                        "description": "Id параметра",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Получить параметр",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Width"
+                                        },
+                                        "measure": {
+                                            "type": "string",
+                                            "example": "mm"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Params"
+                ],
+                "summary": "Удаление записи",
+                "operationId": "2b56dab7f394035bde220228a176e1b3",
+                "parameters": [
+                    {
+                        "name": "param",
+                        "in": "path",
+                        "description": "Id параметра",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Параметр удален",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Param was deleted"
+                                        },
+                                        "err": {
+                                            "type": "string",
+                                            "example": "none"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Params"
+                ],
+                "summary": "Обновление параметра",
+                "operationId": "c952dc4192d2872b79435babf3681f6b",
+                "parameters": [
+                    {
+                        "name": "param",
+                        "in": "path",
+                        "description": "Id характеристики",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Width"
+                                            },
+                                            "measure": {
+                                                "type": "string",
+                                                "example": "mm"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Параметр обновлен",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Param was updated"
+                                        },
+                                        "err": {
+                                            "type": "string",
+                                            "example": "none"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/params": {
+            "get": {
+                "tags": [
+                    "Params"
+                ],
+                "summary": "Список параметров",
+                "operationId": "d5178d7f6a5198158c5e365773a7a95a",
+                "responses": {
+                    "200": {
+                        "description": "Получить список параметров",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Length"
+                                                    },
+                                                    "measure": {
+                                                        "type": "string",
+                                                        "example": "mm"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Params"
+                ],
+                "summary": "Создание параметра",
+                "operationId": "6149cc1a79b35a39ec8d769c41eb9db9",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Width"
+                                            },
+                                            "measure": {
+                                                "type": "string",
+                                                "example": "mm"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Параметр создан",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Param was created"
+                                        },
+                                        "err": {
+                                            "type": "string",
+                                            "example": "none"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/auth/login": {
             "post": {
                 "tags": [
