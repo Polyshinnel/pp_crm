@@ -7,6 +7,57 @@
     "paths": {
         "/api/": {},
         "/api/brands/{brand}": {
+            "get": {
+                "tags": [
+                    "Brands"
+                ],
+                "summary": "Единичная запись",
+                "operationId": "66a7af350cd4b64023f4cf1c338e7fad",
+                "parameters": [
+                    {
+                        "name": "brand",
+                        "in": "path",
+                        "description": "Id бренда",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Получить бренд",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Deva"
+                                        },
+                                        "img": {
+                                            "type": "string",
+                                            "example": "test.jpg"
+                                        },
+                                        "active": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
             "delete": {
                 "tags": [
                     "Brands"
@@ -219,6 +270,366 @@
                                         "err": {
                                             "type": "string",
                                             "example": "none"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/categories/{category}": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Единичная запись",
+                "operationId": "b1e93f4c320b139294426246684af368",
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "path",
+                        "description": "Id категоии",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Получить категорию",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Название категории"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "Описание категории"
+                                                },
+                                                "parent_id": {
+                                                    "type": "integer",
+                                                    "example": "0"
+                                                },
+                                                "status": {
+                                                    "type": "boolean",
+                                                    "example": true
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Удаление записи",
+                "operationId": "50744d610b8b4897987b93f616755bff",
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "path",
+                        "description": "Id категории",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Категория удалена",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "category was deleted"
+                                        },
+                                        "err": {
+                                            "type": "string",
+                                            "example": "none"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Обновление записи",
+                "operationId": "48ae3426f30145eb400c32f21fc532f2",
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "path",
+                        "description": "Id категори",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Название категории"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Описание категории"
+                                            },
+                                            "parent_id": {
+                                                "type": "integer",
+                                                "example": 0
+                                            },
+                                            "status": {
+                                                "type": "boolean",
+                                                "example": true
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Категория обновлена",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "category was updated"
+                                        },
+                                        "err": {
+                                            "type": "string",
+                                            "example": "none"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/categories": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Список категорий",
+                "operationId": "58effe91fb1a4dc30acee876e78ce26d",
+                "responses": {
+                    "200": {
+                        "description": "Получить список категорий",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Название категории"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "example": "Описание категории"
+                                                    },
+                                                    "parent_id": {
+                                                        "type": "integer",
+                                                        "example": 0
+                                                    },
+                                                    "status": {
+                                                        "type": "boolean",
+                                                        "example": true
+                                                    },
+                                                    "children": {
+                                                        "type": "array",
+                                                        "items": {}
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Создание категории",
+                "operationId": "0fc44605258deb3eec57589ad71fe483",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Название категории"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Описание категории"
+                                            },
+                                            "parent_id": {
+                                                "type": "integer",
+                                                "example": 0
+                                            },
+                                            "status": {
+                                                "type": "boolean",
+                                                "example": true
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Категория добавлена",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "category was created"
+                                        },
+                                        "err": {
+                                            "type": "string",
+                                            "example": "none"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/categories/selectTree": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Список категорий Select",
+                "operationId": "58aa8ba9c33d0875a5bf1c81bf6bc021",
+                "responses": {
+                    "200": {
+                        "description": "Получить список категорий Select",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "value": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "label": {
+                                                        "type": "string",
+                                                        "example": "Название категории"
+                                                    },
+                                                    "parent_id": {
+                                                        "type": "integer",
+                                                        "example": 0
+                                                    },
+                                                    "children": {
+                                                        "type": "array",
+                                                        "items": {}
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
                                         }
                                     },
                                     "type": "object"

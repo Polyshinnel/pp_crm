@@ -19,6 +19,8 @@ import SettingsPage from "@/pages/Common/Settings/SettingsPage.vue";
 import BrandsPage from "@/pages/Products/Brands/BrandsPage.vue";
 import BrandsCreatePage from "@/pages/Products/Brands/BrandsCreatePage.vue";
 import BrandsPageEdit from "@/pages/Products/Brands/BrandsPageEdit.vue";
+import CategoriesCreatePage from "@/pages/Products/Categories/CategoriesCreatePage.vue";
+import CategoriesEditPage from "@/pages/Products/Categories/CategoriesEditPage.vue";
 
 const routes = [
     {
@@ -142,6 +144,7 @@ const routes = [
         }
     },
 
+
     {
         path: '/brands',
         name: 'brands',
@@ -168,10 +171,27 @@ const routes = [
     },
 
 
+
     {
         path: '/categories',
         name: 'categories',
         component: CategoriesPage,
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/categories/create',
+        name: 'categories-create',
+        component: CategoriesCreatePage,
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/categories/:categoryId',
+        name: 'categories-edit',
+        component: CategoriesEditPage,
         meta: {
             auth: true
         }

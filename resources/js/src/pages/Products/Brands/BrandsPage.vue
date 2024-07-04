@@ -69,10 +69,10 @@ getBrands();
                             </template>
                         </el-table-column>
                         <el-table-column label="На складе">
-                            <p>0</p>
+                            <p class="counter">0</p>
                         </el-table-column>
                         <el-table-column label="Всего">
-                            <p>0</p>
+                            <p class="counter">0</p>
                         </el-table-column>
                         <el-table-column label="Состояние">
                             <template #default="scope">
@@ -137,4 +137,5 @@ getBrands();
         object-position: center;
     }
 }
+
 </style>

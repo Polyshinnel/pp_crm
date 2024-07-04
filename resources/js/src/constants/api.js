@@ -9,4 +9,5 @@ export const GET_USER = '/api/users/me';
 
 export const BRANDS = '/api/brands'
 
-
+export const CATEGORIES = '/api/categories'
+export const CATEGORIES_TREE_SELECT = '/api/categories/selectTree'

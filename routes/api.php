@@ -65,3 +65,16 @@ Route::group(
 
 
 
+Route::group(
+    [
+        'middleware' => 'jwt.auth',
+        'prefix' => 'categories'
+    ], function () {
+    Route::get('', \App\Http\Controllers\Category\IndexController::class);
+    Route::get('/selectTree', \App\Http\Controllers\Category\SelectTreeController::class);
+    Route::get('/{category}', \App\Http\Controllers\Category\ShowController::class);
+    Route::post('', \App\Http\Controllers\Category\StoreController::class);
+    Route::patch('/{category}', \App\Http\Controllers\Category\UpdateController::class);
+    Route::delete('/{category}', \App\Http\Controllers\Category\DestroyController::class);
+});
+
