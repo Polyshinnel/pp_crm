@@ -21,6 +21,10 @@ import BrandsCreatePage from "@/pages/Products/Brands/BrandsCreatePage.vue";
 import BrandsPageEdit from "@/pages/Products/Brands/BrandsPageEdit.vue";
 import CategoriesCreatePage from "@/pages/Products/Categories/CategoriesCreatePage.vue";
 import CategoriesEditPage from "@/pages/Products/Categories/CategoriesEditPage.vue";
+import CharacteristicsCreatePage from "@/pages/Products/Characteristics/CharacteristicsCreatePage.vue";
+import CharacteristicsEditPage from "@/pages/Products/Characteristics/CharacteristicsEditPage.vue";
+import ParametersCreatePage from "@/pages/Products/Parameters/ParametersCreatePage.vue";
+import ParametersEditPage from "@/pages/Products/Parameters/ParametersEditPage.vue";
 
 const routes = [
     {
@@ -205,11 +209,43 @@ const routes = [
             auth: true
         }
     },
+    {
+        path: '/characteristics/create',
+        name: 'characteristics-create',
+        component: CharacteristicsCreatePage,
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/characteristics/:charId',
+        name: 'characteristics-edit',
+        component: CharacteristicsEditPage,
+        meta: {
+            auth: true
+        }
+    },
 
     {
         path: '/phis-parameters',
         name: 'parameters',
         component: ParametersPage,
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/phis-parameters/create',
+        name: 'parameters-create',
+        component: ParametersCreatePage,
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/phis-parameters/:paramId',
+        name: 'parameters-edit',
+        component: ParametersEditPage,
         meta: {
             auth: true
         }

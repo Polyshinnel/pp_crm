@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Param;
 
 use App\Http\Controllers\Controller;
+use App\Models\Param;
 use Illuminate\Http\Request;
 
 /**
  * @OA\Delete (
- *     path="/api/params/{param}",
+ *     path="/api/param/{param}",
  *     summary="Удаление записи",
  *     tags={"Params"},
  *     security={{ "bearerAuth": {} }},
@@ -25,7 +26,12 @@ use Illuminate\Http\Request;
  */
 class DestroyController extends BaseController
 {
-    public function __invoke() {
+    public function __invoke(Param $param) {
+        $result = $this->service->destroy($param);
+        if($result['err'] != 'none') {
+            return response()->json($result, 500);
+        }
 
+        return response()->json($result, 200);
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 /**
  * @OA\Get (
- *     path="/api/params",
+ *     path="/api/param",
  *     summary="Список параметров",
  *     tags={"Params"},
  *     security={{ "bearerAuth": {} }},
@@ -32,7 +32,8 @@ use Illuminate\Http\Request;
 class IndexController extends BaseController
 {
     public function __invoke() {
-
+        $params = $this->service->index();
+        return response()->json(['data' => $params], 200);
     }
 }
 

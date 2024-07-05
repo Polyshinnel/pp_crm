@@ -31,6 +31,7 @@ use Illuminate\Http\Request;
 class IndexController extends BaseController
 {
     public function __invoke() {
-
+        $chars = $this->service->index();
+        return response()->json(['data' => $chars], 200);
     }
 }

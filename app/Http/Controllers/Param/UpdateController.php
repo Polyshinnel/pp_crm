@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Param;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Param\UpdateRequest;
+use App\Models\Param;
 use Illuminate\Http\Request;
 
 /**
  * @OA\Patch (
- *     path="/api/params/{param}",
+ *     path="/api/param/{param}",
  *     summary="Обновление параметра",
  *     tags={"Params"},
  *     security={{ "bearerAuth": {} }},
@@ -36,7 +38,12 @@ use Illuminate\Http\Request;
  */
 class UpdateController extends BaseController
 {
-    public function __invoke() {
-
+    public function __invoke(Param $param, UpdateRequest $request) {
+        $data = $request->validated();
+        $result = $this->service->update($param, $data);
+        if($result['err'] != 'none') {
+            return response()->json($result, 500);
+        }
+        return response()->json($result, 200);
     }
 }

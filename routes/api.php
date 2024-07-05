@@ -78,3 +78,26 @@ Route::group(
     Route::delete('/{category}', \App\Http\Controllers\Category\DestroyController::class);
 });
 
+Route::group(
+    [
+        'middleware' => 'jwt.auth',
+        'prefix' => 'chars'
+    ], function () {
+    Route::get('', \App\Http\Controllers\Char\IndexController::class);
+    Route::get('/{char}', \App\Http\Controllers\Char\ShowController::class);
+    Route::post('', \App\Http\Controllers\Char\StoreController::class);
+    Route::patch('/{char}', \App\Http\Controllers\Char\UpdateController::class);
+    Route::delete('/{char}', \App\Http\Controllers\Char\DestroyController::class);
+});
+
+Route::group(
+    [
+        'middleware' => 'jwt.auth',
+        'prefix' => 'params'
+    ], function () {
+    Route::get('', \App\Http\Controllers\Param\IndexController::class);
+    Route::get('/{param}', \App\Http\Controllers\Param\ShowController::class);
+    Route::post('', \App\Http\Controllers\Param\StoreController::class);
+    Route::patch('/{param}', \App\Http\Controllers\Param\UpdateController::class);
+    Route::delete('/{param}', \App\Http\Controllers\Param\DestroyController::class);
+});

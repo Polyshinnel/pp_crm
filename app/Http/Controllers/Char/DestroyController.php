@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Char;
 
 use App\Http\Controllers\Controller;
+use App\Models\Char;
 use Illuminate\Http\Request;
 
 /**
@@ -25,7 +26,12 @@ use Illuminate\Http\Request;
  */
 class DestroyController extends BaseController
 {
-    public function __invoke() {
+    public function __invoke(Char $char) {
+        $result = $this->service->destroy($char);
+        if($result['err'] != 'none') {
+            return response()->json($result, 500);
+        }
 
+        return response()->json($result, 200);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Char;
 
 use App\Http\Controllers\Controller;
+use App\Models\Char;
 use Illuminate\Http\Request;
 
 /**
@@ -25,7 +26,8 @@ use Illuminate\Http\Request;
  */
 class ShowController extends BaseController
 {
-    public function __invoke() {
-
+    public function __invoke(Char $char) {
+        $result = $char->toArray();
+        return response()->json($result, 200);
     }
 }

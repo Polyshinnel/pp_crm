@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Param;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Param\StoreRequest;
 use Illuminate\Http\Request;
 
 /**
  * @OA\Post(
- *     path="/api/params",
+ *     path="/api/param",
  *     summary="Создание параметра",
  *     tags={"Params"},
  *     security={{ "bearerAuth": {} }},
@@ -35,8 +36,14 @@ use Illuminate\Http\Request;
  */
 class StoreController extends BaseController
 {
-    public function __invoke()
+    public function __invoke(StoreRequest $request)
     {
-        // TODO: Implement __invoke() method.
+        $data = $request->validated();
+        $result = $this->service->store($data);
+        if($result['err'] != 'none') {
+            return response()->json($result, 500);
+        }
+
+        return response()->json($result, 200);
     }
 }

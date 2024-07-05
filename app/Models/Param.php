@@ -5,7 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class chars extends Model
+class Param extends Model
 {
     use HasFactory;
+
+    protected $table = 'params';
+
+    protected $guarded = false;
 }

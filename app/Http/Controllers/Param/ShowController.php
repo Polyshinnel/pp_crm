@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Param;
 
 use App\Http\Controllers\Controller;
+use App\Models\Param;
 use Illuminate\Http\Request;
 
 /**
  * @OA\Get (
- *     path="/api/params/{param}",
+ *     path="/api/param/{param}",
  *     summary="Единичная запись",
  *     tags={"Params"},
  *     security={{ "bearerAuth": {} }},
@@ -26,7 +27,8 @@ use Illuminate\Http\Request;
  */
 class ShowController extends BaseController
 {
-    public function __invoke() {
-
+    public function __invoke(Param $param) {
+        $result = $param->toArray();
+        return response()->json($result, 200);
     }
 }
