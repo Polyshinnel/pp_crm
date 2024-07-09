@@ -101,3 +101,16 @@ Route::group(
     Route::patch('/{param}', \App\Http\Controllers\Param\UpdateController::class);
     Route::delete('/{param}', \App\Http\Controllers\Param\DestroyController::class);
 });
+
+
+Route::group(
+    [
+        'middleware' => 'jwt.auth',
+        'prefix' => 'products'
+    ], function () {
+    Route::get('', \App\Http\Controllers\Product\IndexController::class);
+    Route::get('/{product}', \App\Http\Controllers\Product\ShowController::class);
+    Route::post('', \App\Http\Controllers\Product\StoreController::class);
+    Route::patch('/{product}', \App\Http\Controllers\Product\UpdateController::class);
+    Route::delete('/{product}', \App\Http\Controllers\Product\DestroyController::class);
+});

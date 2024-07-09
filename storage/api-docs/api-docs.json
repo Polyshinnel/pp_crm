@@ -892,13 +892,13 @@
                 ]
             }
         },
-        "/api/params/{param}": {
+        "/api/param/{param}": {
             "get": {
                 "tags": [
                     "Params"
                 ],
                 "summary": "Единичная запись",
-                "operationId": "f7f12f0cf906993f6322f9b80a846592",
+                "operationId": "f0a062a9c59d854d11ac427efd08d8e8",
                 "parameters": [
                     {
                         "name": "param",
@@ -945,7 +945,7 @@
                     "Params"
                 ],
                 "summary": "Удаление записи",
-                "operationId": "2b56dab7f394035bde220228a176e1b3",
+                "operationId": "379e03b1f8e6d1e4aa591d1639a1cfd1",
                 "parameters": [
                     {
                         "name": "param",
@@ -988,7 +988,7 @@
                     "Params"
                 ],
                 "summary": "Обновление параметра",
-                "operationId": "c952dc4192d2872b79435babf3681f6b",
+                "operationId": "cfe32303d5b272b399492ff5a8ac6534",
                 "parameters": [
                     {
                         "name": "param",
@@ -1050,13 +1050,13 @@
                 ]
             }
         },
-        "/api/params": {
+        "/api/param": {
             "get": {
                 "tags": [
                     "Params"
                 ],
                 "summary": "Список параметров",
-                "operationId": "d5178d7f6a5198158c5e365773a7a95a",
+                "operationId": "eef8d68db827833ab98ba87cee37d763",
                 "responses": {
                     "200": {
                         "description": "Получить список параметров",
@@ -1102,7 +1102,7 @@
                     "Params"
                 ],
                 "summary": "Создание параметра",
-                "operationId": "6149cc1a79b35a39ec8d769c41eb9db9",
+                "operationId": "2bbef98cf72d25ebe6cb553e479e3893",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1136,6 +1136,629 @@
                                         "message": {
                                             "type": "string",
                                             "example": "Param was created"
+                                        },
+                                        "err": {
+                                            "type": "string",
+                                            "example": "none"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/products/{product}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Единичная запись",
+                "operationId": "bcb6d34a9538cee9fca774e2ddf093c2",
+                "parameters": [
+                    {
+                        "name": "product",
+                        "in": "path",
+                        "description": "Id товара",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Получить список товаров",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Название товара"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Описание товара"
+                                        },
+                                        "cover": {
+                                            "type": "string",
+                                            "example": "/test.jpg"
+                                        },
+                                        "brand_id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "sku": {
+                                            "type": "string",
+                                            "example": "asd123"
+                                        },
+                                        "barcode": {
+                                            "type": "string",
+                                            "example": "asd123"
+                                        },
+                                        "sale_price": {
+                                            "type": "string",
+                                            "example": "100.00"
+                                        },
+                                        "actual_purchase_price": {
+                                            "type": "string",
+                                            "example": "100.00"
+                                        },
+                                        "images": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "img": {
+                                                        "type": "string",
+                                                        "example": "test.jpg"
+                                                    },
+                                                    "sort_order": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "categories": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "category_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "chars": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "char_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "value": {
+                                                        "type": "string",
+                                                        "example": "value"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "params": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "param_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "value": {
+                                                        "type": "string",
+                                                        "example": "value"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "example": "PP | Тестовый товар"
+                                        },
+                                        "description_short": {
+                                            "type": "string",
+                                            "example": "Купите лучший тестовый товар!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Удаление записи",
+                "operationId": "6292f222b459f0ce428b9cd27c8c5047",
+                "parameters": [
+                    {
+                        "name": "product",
+                        "in": "path",
+                        "description": "Id товара",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Товар удален",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "product was deleted"
+                                        },
+                                        "err": {
+                                            "type": "string",
+                                            "example": "none"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Обновление записи",
+                "operationId": "ed111272743da24a8fddf9ddb5a07953",
+                "parameters": [
+                    {
+                        "name": "product",
+                        "in": "path",
+                        "description": "Id товара",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Название товара"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Описание товара"
+                                            },
+                                            "cover": {
+                                                "type": "string",
+                                                "example": "test.jpg"
+                                            },
+                                            "brand_id": {
+                                                "type": "integer",
+                                                "example": "1"
+                                            },
+                                            "sku": {
+                                                "type": "string",
+                                                "example": "123321"
+                                            },
+                                            "barcode": {
+                                                "type": "string",
+                                                "example": "123321"
+                                            },
+                                            "sale_price": {
+                                                "type": "string",
+                                                "example": "100.00"
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "PP | Тестовый товар"
+                                            },
+                                            "description_short": {
+                                                "type": "string",
+                                                "example": "Купите лучший тестовый товар!"
+                                            },
+                                            "images": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "img": {
+                                                            "type": "string",
+                                                            "example": "test.jpg"
+                                                        },
+                                                        "sort_order": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "categories": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "category_id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "chars": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "char_id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "value": {
+                                                            "type": "string",
+                                                            "example": "value"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "params": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "param_id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "value": {
+                                                            "type": "string",
+                                                            "example": "value"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Товар добавлен",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "product was created"
+                                        },
+                                        "err": {
+                                            "type": "string",
+                                            "example": "none"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Список товаров",
+                "operationId": "501320a434e19231063b846010a59fd3",
+                "responses": {
+                    "200": {
+                        "description": "Получить список товаров",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Название товара"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "example": "Описание товара"
+                                                    },
+                                                    "cover": {
+                                                        "type": "string",
+                                                        "example": "/test.jpg"
+                                                    },
+                                                    "brand_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "sku": {
+                                                        "type": "string",
+                                                        "example": "asd123"
+                                                    },
+                                                    "barcode": {
+                                                        "type": "string",
+                                                        "example": "asd123"
+                                                    },
+                                                    "sale_price": {
+                                                        "type": "string",
+                                                        "example": "100.00"
+                                                    },
+                                                    "actual_purchase_price": {
+                                                        "type": "string",
+                                                        "example": "100.00"
+                                                    },
+                                                    "images": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "img": {
+                                                                    "type": "string",
+                                                                    "example": "test.jpg"
+                                                                },
+                                                                "sort_order": {
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "categories": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "category_id": {
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "chars": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "char_id": {
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                },
+                                                                "value": {
+                                                                    "type": "string",
+                                                                    "example": "value"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "params": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "param_id": {
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                },
+                                                                "value": {
+                                                                    "type": "string",
+                                                                    "example": "value"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "PP | Тестовый товар"
+                                                    },
+                                                    "description_short": {
+                                                        "type": "string",
+                                                        "example": "Купите лучший тестовый товар!"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Создание товара",
+                "operationId": "1c03b50865edf9e45fc8306f6e009bd7",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Название товара"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Описание товара"
+                                            },
+                                            "cover": {
+                                                "type": "string",
+                                                "example": "test.jpg"
+                                            },
+                                            "brand_id": {
+                                                "type": "integer",
+                                                "example": "1"
+                                            },
+                                            "sku": {
+                                                "type": "string",
+                                                "example": "123321"
+                                            },
+                                            "barcode": {
+                                                "type": "string",
+                                                "example": "123321"
+                                            },
+                                            "sale_price": {
+                                                "type": "string",
+                                                "example": "100.00"
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "PP | Тестовый товар"
+                                            },
+                                            "description_short": {
+                                                "type": "string",
+                                                "example": "Купите лучший тестовый товар!"
+                                            },
+                                            "images": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "img": {
+                                                            "type": "string",
+                                                            "example": "test.jpg"
+                                                        },
+                                                        "sort_order": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "categories": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "category_id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "chars": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "char_id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "value": {
+                                                            "type": "string",
+                                                            "example": "value"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "params": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "param_id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "value": {
+                                                            "type": "string",
+                                                            "example": "value"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Товар добавлен",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "product was created"
                                         },
                                         "err": {
                                             "type": "string",

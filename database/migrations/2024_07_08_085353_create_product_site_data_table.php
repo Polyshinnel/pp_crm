@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->string('title');
-            $table->string('description');
+            $table->string('description_short');
             $table->timestamps();
 
             $table->index('product_id', 'product_site_data_product_idx');

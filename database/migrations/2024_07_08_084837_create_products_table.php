@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('cover');
             $table->unsignedBigInteger('brand_id');
             $table->string('sku');
-            $table->string('barcode');
+            $table->string('barcode')->nullable();
             $table->decimal('sale_price', 10, 2);
             $table->decimal('actual_purchase_price', 10, 2)->default(0.00);
             $table->timestamps();
