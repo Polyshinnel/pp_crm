@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->string('cover');
+            $table->string('cover')->default('/common/default-product.svg');
             $table->unsignedBigInteger('brand_id');
             $table->string('sku');
             $table->string('barcode')->nullable();

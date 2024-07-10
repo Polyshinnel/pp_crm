@@ -198,6 +198,7 @@ class ProductService
         $productSiteData = ProductSiteData::where(['product_id' => $product->id])->first();
         $productArr['title'] = $productSiteData['title'];
         $productArr['description_short'] = $productSiteData['description_short'];
+        $productArr['brand_name'] = $product->brand->name;
 
         return $productArr;
     }

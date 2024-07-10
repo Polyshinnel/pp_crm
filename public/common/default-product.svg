@@ -1,0 +1,16 @@
+<svg width="560" height="560" viewBox="0 0 560 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="560" height="560" fill="#989B86"/>
+<g clip-path="url(#clip0_72_100)">
+<path d="M496 64H64V496H496V64Z" fill="white" fill-opacity="0.01"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M460 190L280 100L100 190V370L280 460L460 370V190Z" stroke="white" stroke-width="8" stroke-linejoin="round"/>
+<path d="M100 190L280 280" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M280 460V280" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M460 190L280 280" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M370 145L190 235" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_72_100">
+<rect width="432" height="432" fill="white" transform="translate(64 64)"/>
+</clipPath>
+</defs>
+</svg>

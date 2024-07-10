@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('img')->default('/common/default-brand.svg');;
+            $table->string('img')->default('/common/default-brand.svg');
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

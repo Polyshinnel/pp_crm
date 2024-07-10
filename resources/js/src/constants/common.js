@@ -40,7 +40,7 @@ export const SIDEBAR = [
         title: "Склад",
         item: [
             {
-                name: "Склады",
+                name: "Склад",
                 icon: "/menu-icons/warehouse.svg",
                 link: "/warehouses"
             },

@@ -25,6 +25,8 @@ import CharacteristicsCreatePage from "@/pages/Products/Characteristics/Characte
 import CharacteristicsEditPage from "@/pages/Products/Characteristics/CharacteristicsEditPage.vue";
 import ParametersCreatePage from "@/pages/Products/Parameters/ParametersCreatePage.vue";
 import ParametersEditPage from "@/pages/Products/Parameters/ParametersEditPage.vue";
+import ProductsCreatePage from "@/pages/Products/Products/ProductsCreatePage.vue";
+import ProductsEditPage from "@/pages/Products/Products/ProductsEditPage.vue";
 
 const routes = [
     {
@@ -143,6 +145,22 @@ const routes = [
         path: '/products',
         name: 'products',
         component: ProductsPage,
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/products/create',
+        name: 'products-create',
+        component: ProductsCreatePage,
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/products/:productId',
+        name: 'products-edit',
+        component: ProductsEditPage,
         meta: {
             auth: true
         }

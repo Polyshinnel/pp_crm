@@ -14,3 +14,5 @@ export const CATEGORIES_TREE_SELECT = '/api/categories/selectTree'
 
 export const CHARS = '/api/chars'
 export const PARAMS = '/api/params'
+
+export const PRODUCTS = '/api/products'
