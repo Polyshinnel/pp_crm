@@ -14,10 +14,13 @@ const props = defineProps({
 })
 
 const addChar = () => {
-    props.form.chars.push({
-        char_id: 2,
-        value: ''
-    })
+    if(chars.value.length > 0) {
+        let charId = chars.value[0].id
+        props.form.chars.push({
+            char_id: charId,
+            value: ''
+        })
+    }
 }
 
 const deleteChar = (char) => {
@@ -31,6 +34,11 @@ const getChars = async () => {
     data = data.data
     chars.value = data
     loading.value = false
+
+    if(chars.value.length > 0) {
+        props.form.chars[0].char_id = chars.value[0].id
+    }
+
 }
 
 getChars()

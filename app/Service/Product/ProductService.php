@@ -26,6 +26,7 @@ class ProductService
                     'cover' => $data['cover'],
                     'brand_id' => $data['brand_id'],
                     'sku' => $data['sku'],
+                    'barcode' => $data['barcode'],
                     'sale_price' => $data['sale_price'],
                 ];
                 $product = Product::create($productCreateArr);
@@ -70,6 +71,7 @@ class ProductService
                 'cover' => $data['cover'],
                 'brand_id' => $data['brand_id'],
                 'sku' => $data['sku'],
+                'barcode' => $data['barcode'],
                 'sale_price' => $data['sale_price'],
             ];
             $product->update($productUpdateArr);

@@ -16,22 +16,28 @@ const props = defineProps({
 const getParams = async () => {
     let {data} = await axiosApiInstance.get(PARAMS)
     data = data.data
-    console.log(data)
     params.value = data
     loading.value = false
+
+    if(params.value.length > 0) {
+        props.form.params[0].param_id = params.value[0].id
+    }
 }
 
 const addParam = () => {
-    props.form.params.push({
-        char_id: 2,
-        value: ''
-    })
+    if(params.value.length > 0) {
+        let paramId = params.value[0].id
+        props.form.params.push({
+            param_id: paramId,
+            value: ''
+        })
+    }
 }
 
 const deleteParam = (param) => {
     const index = props.form.params.indexOf(param)
     if(index !== -1) {
-        props.form.chars.splice(index, 1)
+        props.form.params.splice(index, 1)
     }
 }
 
@@ -50,7 +56,7 @@ getParams();
                 label-position="left"
             >
                 <el-form-item
-                    label="Характеристика"
+                    label="Параметр"
                     v-for="param in props.form.params"
                 >
                     <Loading v-if="loading" />
